@@ -1,10 +1,13 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 export const middleware = (request: NextRequest) => {
-  // Just return next() response for the root path
-  if (request.nextUrl.pathname === "/" || request.nextUrl.pathname === "/users") {
-    return NextResponse.next();
+  // Redirect root path to dashboard
+  if (request.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
+  
+  // Allow other paths to continue
+  return NextResponse.next();
 };
 
 export const config = {
