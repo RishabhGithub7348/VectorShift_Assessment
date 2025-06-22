@@ -1,3 +1,4 @@
+# Builder stage
 FROM python:3.9-slim AS builder
 WORKDIR /app
 
@@ -15,10 +16,20 @@ WORKDIR /app
 # Install libpq5 for runtime
 RUN apt-get update && apt-get install -y --no-install-recommends libpq5 \
     && rm -rf /var/lib/apt/lists/*
+
+# Copy installed Python packages from builder stage
 COPY --from=builder /root/.local /root/.local
 COPY . .
+
+# Set environment variables
 ENV PATH=/root/.local/bin:$PATH
 ENV PYTHONPATH=/app
+
+# Ensure all files are executable where needed
 RUN chmod -R 755 /app
+
+# Expose port
 EXPOSE 8000
-CMD uvicorn main:app --host 0.0.0.0 --port $PORT
+
+# Run the application with python main.py
+CMD python main.py --host 0.0.0.0 --port $PORT
