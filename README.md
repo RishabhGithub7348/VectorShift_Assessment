@@ -1,3 +1,4 @@
+
 # VectorShift_Assessment
 
 A full-stack application for managing OAuth-based integrations with popular services like HubSpot, Airtable, and Notion. Built with Next.js frontend and FastAPI backend.
@@ -14,11 +15,11 @@ A full-stack application for managing OAuth-based integrations with popular serv
 
 ## 🏗️ Architecture
 ```text
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Next.js       │    │   FastAPI       │    │   External      │
-│   Frontend      │◄──►│   Backend       │◄──►│   Services      │
-│   (Port 3000)   │    │   (Port 8000)   │    │   (OAuth)       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Next.js       │    │   Next.js       │    │   FastAPI       │    │   External      │
+│   Frontend      │◄──►│   API Routes    │◄──►│   Backend       │◄──►│   Services      │
+│   (Port 3000)   │    │   (Proxy)       │    │   (Port 8000)   │    │   (OAuth)       │
+└─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
 ### Frontend (Next.js)
@@ -50,7 +51,7 @@ A full-stack application for managing OAuth-based integrations with popular serv
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/vectorshift.git
+git clone https://github.com/RishabhGithub7348/vectorshift.git
 cd vectorshift
 ```
 
@@ -69,6 +70,7 @@ AIRTABLE_API_KEY=your_airtable_api_key
 NOTION_API_KEY=your_notion_api_key
 REDIS_HOST=localhost
 REDIS_PORT=6379
+REDIS_PASSWORD=xxx
 APP_PORT=8000
 ```
 #### Start the backend:
@@ -96,51 +98,6 @@ pnpm dev
 - Backend API: http://localhost:8000
 ```
 
-## 📁 Project Structure
-```text
-vectorshift/
-├── frontend/                 # Next.js application
-│   ├── app/                 # App Router pages
-│   │   ├── (integration)/   # Integration routes
-│   │   └── dashboard/       # Main dashboard
-│   ├── components/          # Reusable UI components
-│   ├── hooks/              # Custom React hooks
-│   ├── providers/          # Context providers
-│   └── types/              # TypeScript definitions
-│
-├── backend/                 # FastAPI application
-│   └── src/
-│       ├── app/            # Application core
-│       ├── controllers/    # API route handlers
-│       ├── models/         # Pydantic models
-│       ├── middleware/     # Custom middleware
-│       └── config/         # Configuration settings
-│
-└── README.md               # This file
-```
-
-## 🔌 Supported Integrations
-```text
-Service         OAuth  Data Sync  Status
-HubSpot         ✅      ✅         Active
-Airtable        ✅      ✅         Active
-Notion          ✅      ✅         Active
-```
-
-## 🌐 API Endpoints
-
-### Authentication
-```text
-- POST /api/v1/integrations/{service}/authorize - Initiate OAuth flow
-- GET /api/v1/integrations/{service}/oauth2callback - Handle OAuth callback
-- POST /api/v1/integrations/{service}/credentials - Retrieve stored credentials
-```
-
-### Data Operations
-```text
-- POST /api/v1/integrations/{service}/items - Fetch integration data
-```
-
 ## 🔧 Configuration
 
 ### Environment Variables
@@ -166,5 +123,3 @@ REDIS_DB=0
 # Server
 APP_PORT=8000
 ```
-
-
