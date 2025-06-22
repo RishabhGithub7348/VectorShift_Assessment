@@ -27,8 +27,8 @@ FastAPI-based backend for VectorShift, handling integrations with HubSpot, Airta
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/vectorshift-backend.git
-cd vectorshift-backend
+git clone https://github.com/RishabhGithub7348/VectorShift_Assessment.git
+cd backend
 ```
 
 ### 2. Set Up Virtual Environment
@@ -49,6 +49,7 @@ uvicorn==0.30.0
 pydantic==2.7.0
 anyio==4.3.0
 python-dotenv==1.0.1
+python-multipart
 ```
 
 ### 4. Configure Environment Variables
@@ -60,7 +61,7 @@ AIRTABLE_API_KEY=your_airtable_api_key
 NOTION_API_KEY=your_notion_api_key
 REDIS_HOST=localhost
 REDIS_PORT=6379
-REDIS_DB=0
+REDIS_PASSWORD=XXX
 APP_PORT=8000  # Port configuration
 ```
 
@@ -147,45 +148,4 @@ All endpoints prefixed with /api/v1. Examples:
   - data: any (e.g., {"auth_url": "https://..."}, credentials)
   - errors: string[]
   - Status codes: 200, 400, etc.
-```
-
-## Troubleshooting
-```text
-- 500 Internal Server Error:
-  - Check logs for TypeError (e.g., argument mismatch)
-  - Ensure controller/service signatures align (e.g., pass request to oauth2callback_hubspot)
-- Missing Environment Variables:
-  - Verify .env file and restart app
-- CORS Issues:
-  - Add CORSMiddleware to main.py:
-```
-```python
-from fastapi.middleware.cors import CORSMiddleware
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000"], allow_methods=["*"])
-```
-
-## Development Guidelines
-```text
-- Coding Standards: Use type hints, follow PEP 8
-- Testing: Add unit tests in tests/ using pytest
-- Dependencies: Update requirements.txt with new packages
-- Logging: Use logging module for structured logs
-```
-
-## Contributing
-```bash
-git checkout -b feature/xyz
-git commit -m "Add feature xyz"
-git push origin feature/xyz
-# Open PR on GitHub
-```
-
-## License
-```text
-[Specify license, e.g., MIT] - Add LICENSE file if needed
-```
-
-## Last Updated
-```text
-10:59 PM IST, Saturday, June 21, 2025
 ```
