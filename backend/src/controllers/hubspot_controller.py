@@ -9,7 +9,6 @@ from ..services.hubspot_service import (
     get_hubspot_items as service_get_hubspot_items,
 )
 
-
 async def authorize_hubspot(ctx: VectorShiftContext, response: Response):
     """Initiate HubSpot OAuth authorization."""
     if not ctx.user_id or not ctx.org_id:
@@ -22,6 +21,10 @@ async def authorize_hubspot(ctx: VectorShiftContext, response: Response):
 
 async def oauth2callback_hubspot(ctx: VectorShiftContext, request: Request, response: Response):
     """Handle HubSpot OAuth callback."""
+    code = request.query_params.get("code")
+    state = request.query_params.get("state")
+    if not code or not state:
+        raise HTTPException(status_code=400, detail="code and state are required")
     return await service_oauth2callback_hubspot(ctx, request)
 
 async def get_hubspot_credentials(ctx: VectorShiftContext, response: Response):
@@ -41,14 +44,4 @@ async def get_hubspot_items(ctx: VectorShiftContext, credentials: dict, response
         return return_success(response, items)
     except Exception as e:
         return return_error(response, [str(e)])
-
-
-
-
-
-
-
-
-
-
-
+        
