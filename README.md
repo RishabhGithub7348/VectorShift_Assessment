@@ -118,7 +118,7 @@ NOTION_API_KEY=your_api_key
 # Database
 REDIS_HOST=localhost
 REDIS_PORT=6379
-REDIS_DB=0
+REDIS_PASSWORD=xxx
 
 # Server
 APP_PORT=8000
