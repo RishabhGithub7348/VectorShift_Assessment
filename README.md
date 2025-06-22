@@ -1,4 +1,4 @@
-# VectorShift
+# VectorShift_Assessment
 
 A full-stack application for managing OAuth-based integrations with popular services like HubSpot, Airtable, and Notion. Built with Next.js frontend and FastAPI backend.
 
