@@ -27,24 +27,16 @@ router = APIRouter(prefix="/api/v1")
 @router.post("/integrations/hubspot/authorize")
 async def hubspot_authorize(user_id: str = Form(...), org_id: str = Form(...), response: Response = None):
     ctx = await VectorShiftContext.get(user_id=user_id, org_id=org_id)
-    if not ctx.user_id or not ctx.org_id:
-        raise HTTPException(status_code=400, detail="user_id and org_id are required")
     return await authorize_hubspot(ctx, response)
 
 @router.get("/integrations/hubspot/oauth2callback")
 async def hubspot_oauth2callback(request: Request, response: Response = None):
     ctx = await VectorShiftContext.get(request=request)
-    code = request.query_params.get("code")
-    state = request.query_params.get("state")
-    if not code or not state:
-        raise HTTPException(status_code=400, detail="code and state are required")
     return await oauth2callback_hubspot(ctx, request, response)
 
 @router.post("/integrations/hubspot/credentials")
 async def hubspot_credentials(user_id: str = Form(...), org_id: str = Form(...), response: Response = None):
     ctx = await VectorShiftContext.get(user_id=user_id, org_id=org_id)
-    if not ctx.user_id or not ctx.org_id:
-        raise HTTPException(status_code=400, detail="user_id and org_id are required")
     return await get_hubspot_credentials(ctx, response)
 
 @router.post("/integrations/hubspot/items")
@@ -60,24 +52,16 @@ async def hubspot_items(credentials: str = Form(...), response: Response = None)
 @router.post("/integrations/airtable/authorize")
 async def airtable_authorize(user_id: str = Form(...), org_id: str = Form(...), response: Response = None):
     ctx = await VectorShiftContext.get(user_id=user_id, org_id=org_id)
-    if not ctx.user_id or not ctx.org_id:
-        raise HTTPException(status_code=400, detail="user_id and org_id are required")
     return await authorize_airtable(ctx, response)
 
 @router.get("/integrations/airtable/oauth2callback")
 async def airtable_oauth2callback(request: Request, response: Response = None):
     ctx = await VectorShiftContext.get(request=request)
-    code = request.query_params.get("code")
-    state = request.query_params.get("state")
-    if not code or not state:
-        raise HTTPException(status_code=400, detail="code and state are required")
     return await oauth2callback_airtable(ctx, request, response)
 
 @router.post("/integrations/airtable/credentials")
 async def airtable_credentials(user_id: str = Form(...), org_id: str = Form(...), response: Response = None):
     ctx = await VectorShiftContext.get(user_id=user_id, org_id=org_id)
-    if not ctx.user_id or not ctx.org_id:
-        raise HTTPException(status_code=400, detail="user_id and org_id are required")
     return await get_airtable_credentials(ctx, response)
 
 @router.post("/integrations/airtable/items")
@@ -93,24 +77,16 @@ async def airtable_items(credentials: str = Form(...), response: Response = None
 @router.post("/integrations/notion/authorize")
 async def notion_authorize(user_id: str = Form(...), org_id: str = Form(...), response: Response = None):
     ctx = await VectorShiftContext.get(user_id=user_id, org_id=org_id)
-    if not ctx.user_id or not ctx.org_id:
-        raise HTTPException(status_code=400, detail="user_id and org_id are required")
     return await authorize_notion(ctx, response)
 
 @router.get("/integrations/notion/oauth2callback")
 async def notion_oauth2callback(request: Request, response: Response = None):
     ctx = await VectorShiftContext.get(request=request)
-    code = request.query_params.get("code")
-    state = request.query_params.get("state")
-    if not code or not state:
-        raise HTTPException(status_code=400, detail="code and state are required")
     return await oauth2callback_notion(ctx, request, response)
 
 @router.post("/integrations/notion/credentials")
 async def notion_credentials(user_id: str = Form(...), org_id: str = Form(...), response: Response = None):
     ctx = await VectorShiftContext.get(user_id=user_id, org_id=org_id)
-    if not ctx.user_id or not ctx.org_id:
-        raise HTTPException(status_code=400, detail="user_id and org_id are required")
     return await get_notion_credentials(ctx, response)
 
 @router.post("/integrations/notion/items")
