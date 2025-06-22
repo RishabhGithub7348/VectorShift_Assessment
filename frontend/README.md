@@ -27,8 +27,8 @@ The VectorShift frontend is a Next.js application built with the App Router, uti
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/vectorshift-frontend.git
-cd vectorshift-frontend
+git clone https://github.com/RishabhGithub7348/VectorShift_Assessment.git
+cd frontend
 ```
 
 ### 2. Install Dependencies with pnpm
@@ -39,7 +39,7 @@ pnpm install
 ### 3. Configure Environment Variables
 #### Create `.env` file
 ```text
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
+V1_API_ENDPOINT=http://localhost:8000/api/v1
 ```
 ```text
 This sets the backend API base URL for proxying API requests.
@@ -67,9 +67,9 @@ vectorshift-frontend/
 │       ├── button.tsx       # Button component
 │       └── input.tsx        # Input component
 ├── integrations/            # Integration-specific logic
-│   ├── hubspot.js           # HubSpot integration component
-│   ├── airtable.js          # Airtable integration component
-│   └── notion.js            # Notion integration component
+│   ├── hubspot.tsx           # HubSpot integration component
+│   ├── airtable.tsx         # Airtable integration component
+│   └── notion.tsx           # Notion integration component
 ├── config/                  # Configuration files
 │   ├── axios.ts             # Axios instance for API calls
 │   └── query.ts             # TanStack Query hooks for integrations
@@ -102,7 +102,7 @@ vectorshift-frontend/
   - integration-card.tsx, integration-form.tsx, integration-list.tsx, data-form.tsx, navbar.tsx: Reusable UI components
   - ui/: shadcn/ui components (button.tsx, input.tsx) for styled inputs
 - integrations/:
-  - hubspot.js, airtable.js, notion.js: Logic for each integration’s OAuth and data handling
+  - hubspot.tsx, airtable.tsx, notion.tsx: Logic for each integration’s OAuth and data handling
 - config/:
   - axios.ts: Configures Axios with the backend URL, handling proxy routing
   - query.ts: Sets up TanStack Query for data fetching
@@ -118,7 +118,7 @@ vectorshift-frontend/
 
 ### 1. Start the Backend
 ```bash
-uvicorn src.app.main:app --host 0.0.0.0 --port 8000 --reload
+python main.py
 ```
 
 ### 2. Start the Frontend
